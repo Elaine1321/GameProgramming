@@ -1,0 +1,23 @@
+fileFormatVersion: 2
+guid: d2d35efb354421b4885080b0936dbc58
+TrueTypeFontImporter:
+  externalObjects: {}
+  serializedVersion: 4
+  fontSize: 16
+  forceTextureCase: -2
+  characterSpacing: 0
+  characterPadding: 1
+  includeFontData: 1
+  fontName: Comet Deer
+  fontNames:
+  - Comet Deer
+  fallbackFontReferences:
+  - {fileID: 12800000, guid: 8c10667bef0102548be42ee8736bdbb0, type: 3}
+  customCharacters: 
+  fontRenderingMode: 0
+  ascentCalculationMode: 1
+  useLegacyBoundsCalculation: 0
+  shouldRoundAdvanceValue: 1
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
