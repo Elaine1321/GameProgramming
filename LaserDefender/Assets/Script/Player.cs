@@ -3,12 +3,16 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
-
+using UnityEngine.SceneManagement;
 public class Player : MonoBehaviour
 
 {
-
+[SerializeField] GameObject playerLaser;
 [SerializeField] float movementSpeed = 10f;
+[SerializeField] float laserSpeed = 10f;
+[SerializeField] float laserSpawnTime = 1f;
+
+Coroutine fireCoroutine;
 
 float xMin , xMax, yMin , yMax;
 
@@ -28,6 +32,7 @@ int PlayerHealth = 100;
     void Update()
     {
         Move();
+        Fire();
     }
 
     private void SetupHealth()
@@ -87,6 +92,39 @@ int PlayerHealth = 100;
             PlayerHealth -=10;
             UpdateHealth();
             Destroy(collider.gameObject);
+
+            if (PlayerHealth <= 0){
+
+                SceneManager.LoadScene("LoseScene");
+            }
         }
+    }
+
+    private void Fire()
+    {
+        //if mouse is clicked
+        if (Input.GetButtonDown("Fire1"))
+         {
+             fireCoroutine = StartCoroutine(FireContinuously());
+         }
+            
+      
+
+        if(Input.GetButtonUp("Fire1"))
+        {
+            StopCoroutine(fireCoroutine);
+        }
+ 
+    }
+
+    IEnumerator FireContinuously()
+    {
+        while(true)
+        {
+            GameObject laser =Instantiate(playerLaser, transform.position,transform.rotation); 
+            laser.GetComponent<Rigidbody2D>().velocity =new Vector2(0,laserSpeed);
+            yield return new WaitForSeconds(laserSpawnTime);
+        }
+        
     }
 }
